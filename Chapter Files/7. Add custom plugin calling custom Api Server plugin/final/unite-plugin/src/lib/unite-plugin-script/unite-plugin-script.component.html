@@ -1,0 +1,35 @@
+<h1><b>This component displays data retrieved by script</b></h1>
+
+<button mat-button color="warn" (click)='navigateToSqlComponent()'> Got to SQL Component </button>
+
+<table mat-table [dataSource]="myDataArray">
+
+  <ng-container matColumnDef="ManagerCentralAccount">
+    <th mat-header-cell *matHeaderCellDef> Manager Central Account </th>
+    <td mat-cell *matCellDef="let element"> {{element.ManagerCentralAccount}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="FirstName">
+    <th mat-header-cell *matHeaderCellDef> First Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="LastName">
+    <th mat-header-cell *matHeaderCellDef> Last Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.LastName}} </td>
+  </ng-container>
+  <ng-container matColumnDef="BusinessRole">
+    <th mat-header-cell *matHeaderCellDef>Business Role</th>
+    <td mat-cell *matCellDef="let element"> {{element.BusinessRole}} </td>
+  </ng-container>  
+  <ng-container matColumnDef="Title">
+    <th mat-header-cell *matHeaderCellDef> Title </th>
+    <td mat-cell *matCellDef="let element"> {{element.Title}} </td>
+  </ng-container>
+  
+  <!--<mat-text-column name="FirstName"></mat-text-column>-->
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+
+</table>

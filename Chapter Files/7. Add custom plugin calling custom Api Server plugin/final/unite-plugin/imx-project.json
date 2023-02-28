@@ -1,0 +1,13 @@
+{
+  "Name": "unite-plugin",
+  "Path": "imxweb\\projects\\unite-plugin",
+  "ProjectType": "ng-lib",
+  "ProjectDependcies": [
+    "qbm",
+    "qer"
+  ],
+  "ChangePatterns": [
+    "imxweb\\projects\\unite-plugin",
+    "imxweb\\shared\\assets"
+  ]
+}

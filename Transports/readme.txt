@@ -1,0 +1,2 @@
+Contains script - CCC_Call_Database_Direct
+and Predefined SQL - CCC_Get_Reports_With_Business_Roles

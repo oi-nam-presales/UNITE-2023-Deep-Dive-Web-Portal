@@ -1,0 +1,4 @@
+SamplePlugin.CompositionApi.Server.Plugin.dll and 
+UnitePlugin.CompositionApi.Server.Plugin.dll 
+
+are compiled dlls from session projects.

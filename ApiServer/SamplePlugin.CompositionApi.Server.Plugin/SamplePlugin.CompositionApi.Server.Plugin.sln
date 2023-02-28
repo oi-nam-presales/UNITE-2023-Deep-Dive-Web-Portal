@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamplePlugin.CompositionApi.Server.Plugin", "SamplePlugin.CompositionApi.Server.Plugin.csproj", "{545644A6-0540-4938-B8E2-77ABAF583F14}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{545644A6-0540-4938-B8E2-77ABAF583F14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{545644A6-0540-4938-B8E2-77ABAF583F14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{545644A6-0540-4938-B8E2-77ABAF583F14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{545644A6-0540-4938-B8E2-77ABAF583F14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD310C23-9783-4837-8171-E753DD2838A6}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,13 @@
+<h1><b>This component displays data retrieved by Predefined SQL</b></h1>
+
+<button mat-button mat-button color="warn" (click)='navigateToStartPage()'> Back to Dashboard </button>
+
+ 
+    <imx-data-source-toolbar #dst [options]="['search']"
+      [settings]="dstSettings" data-imx-identifier="test-sql-dst">
+    </imx-data-source-toolbar>
+    <imx-data-table [dst]="dst" [detailViewVisible]="true" mode="auto" [selectable]="false"
+      [showSelectedItemsMenu]="false"
+      data-imx-identifier="test-sql-datatable"
+      noMatchingDataText="#LDS#There are no matching identities.">
+    </imx-data-table> 

@@ -1,0 +1,1 @@
+Modified is the same as in 5. Add base plugin component.
