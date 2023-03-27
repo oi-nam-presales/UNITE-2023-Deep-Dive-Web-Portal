@@ -44,21 +44,24 @@ export class AccountsExtService {
     return this.apiService.typedClient.PortalPersonAccounts.Get(uid);
   }
 
-  public async getAccountsWithExtraColumns(uid: string, extraColumns: string): Promise<TypedEntityCollectionData<PortalPersonAccountsPlus>> {
+ //----------------------------------------------------------------------------------------
+  public async getAccountsWithExtraColumns(uid: string, extraColumns: string): Promise<ExtendedTypedEntityCollection<PortalPersonAccountsPlus, unknown>> {
 
     const parametersOptional = {withProperties : extraColumns }
 
     var newTotalRet = {
-      Data: [],
+      Data: [] as any[],
       totalCount: 0
     }
 
     console.log('In getAccountsWithExtraColumns');
 
     const ret = await this.apiService.typedClient.PortalPersonAccounts.Get(uid, parametersOptional)
-
+    
       ret.Data.forEach(persAcc =>{
           var ent = persAcc.GetEntity();
+          
+          /** Exposes additional columns in the data that are missing in the existing schema. */
           ent.ApplySchema({
             Columns: {
                 "AccountDisabled": {
@@ -67,10 +70,12 @@ export class AccountsExtService {
                 }
             }
           });
-
+          
           var column = ent.GetColumn("AccountDisabled")
-                    //var assa = column.GetValue()
-          var plus = new PortalPersonAccountsPlus(persAcc, column)
+                 
+          /*Create a new PortalPersonAccounts with additional column*/
+          var plus = new PortalPersonAccountsPlus(ent, column)
+          
           newTotalRet.Data.push(plus)
 
           console.log('In getAccountsWithExtraColumns - processed ' + persAcc.AccountName.value);
