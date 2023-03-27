@@ -44,7 +44,7 @@ export class AccountsExtService {
     return this.apiService.typedClient.PortalPersonAccounts.Get(uid);
   }
 
- //----------------------------------------------------------------------------------------
+ //P.S. ----------------------------------------------------------------------------------------
   public async getAccountsWithExtraColumns(uid: string, extraColumns: string): Promise<ExtendedTypedEntityCollection<PortalPersonAccountsPlus, unknown>> {
 
     const parametersOptional = {withProperties : extraColumns }
@@ -56,13 +56,14 @@ export class AccountsExtService {
 
     console.log('In getAccountsWithExtraColumns');
 
+    /** Retrieve person accounts with additional column*/
     const ret = await this.apiService.typedClient.PortalPersonAccounts.Get(uid, parametersOptional)
     
-      ret.Data.forEach(persAcc =>{
-          var ent = persAcc.GetEntity();
+      ret.Data.forEach(personAccount =>{
+          var personAccountEntity = personAccount.GetEntity();
           
           /** Exposes additional columns in the data that are missing in the existing schema. */
-          ent.ApplySchema({
+          personAccountEntity.ApplySchema({
             Columns: {
                 "AccountDisabled": {
                     Type: ValType.Bool,
@@ -71,14 +72,14 @@ export class AccountsExtService {
             }
           });
           
-          var column = ent.GetColumn("AccountDisabled")
+          var column = personAccountEntity.GetColumn("AccountDisabled")
                  
-          /*Create a new PortalPersonAccounts with additional column*/
-          var plus = new PortalPersonAccountsPlus(ent, column)
+          /** Create a new PortalPersonAccounts with additional column*/
+          var plus = new PortalPersonAccountsPlus(personAccountEntity, column)
           
           newTotalRet.Data.push(plus)
 
-          console.log('In getAccountsWithExtraColumns - processed ' + persAcc.AccountName.value);
+          console.log('In getAccountsWithExtraColumns - processed ' + personAccount.AccountName.value);
       });
 
     newTotalRet.totalCount = newTotalRet.Data.length

@@ -5,9 +5,8 @@ import { EntityValue, IEntityColumn } from "imx-qbm-dbts";
 export class PortalPersonAccountsPlus extends PortalPersonAccounts {
   readonly AccountDisabled: EntityValue<IEntityColumn>; 
   
-  constructor(acc: PortalPersonAccounts, isDisabled: IEntityColumn){
-    super(acc.GetEntity())
+  constructor(personAccountEntity: IEntity, isDisabled: IEntityColumn){
+    super(personAccountEntity)
     this.AccountDisabled = new EntityValue(isDisabled);
   }
 }
-
