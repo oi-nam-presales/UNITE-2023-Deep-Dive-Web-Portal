@@ -1,0 +1,20 @@
+<!--Add to <div class="buttonbar"> -->
+
+<div class="buttonbar">
+                  <button mat-raised-button
+                    matTooltip="{{'#LDS#Resets this setting to its original value.' | translate}}" color="primary"
+                    data-imx-identifier="admin-revert-setting" (click)="configSvc.revert(conf)">{{'#LDS#Reset' |
+                    translate }}</button>
+                    &nbsp;
+                    
+					<!--Add this to the file: file uploader and button-->
+                    <input type="file" accept="image/*" class="file-input"
+                          (change)="onFileSelected($event)" #fileUpload>                    
+                    
+                    <!--<button  mat-raised-button color="primary" -->
+					<button mat-raised-button *ngIf="conf.Key == 'CompanyLogoUrl'" color="primary"                    
+                      (click)="fileUpload.click()">
+                        <mat-icon>attach_file</mat-icon>
+                    </button>                    
+
+                </div>    

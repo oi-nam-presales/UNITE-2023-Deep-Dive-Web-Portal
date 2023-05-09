@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0763838d-d377-483a-a8a7-fcd58662ebb9",
+		"_postman_id": "67a867e0-650f-4c09-8aff-079e6855178f",
 		"name": "Identity Manager API Samples",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -9,462 +9,631 @@
 			"name": "Basics",
 			"item": [
 				{
-					"name": "ApiSamples: hello world",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "X-XSRF-TOKEN",
-								"value": "{{X-XSRF-TOKEN}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"Input\": \"Bob Bobsky 2\", \"Output\":\"Bob Bobsky\"}"
-						},
-						"url": {
-							"raw": "{{url}}/portal/demoplugin",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"portal",
-								"demoplugin"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "ApiSamples: POST",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "X-XSRF-TOKEN",
-								"value": "{{X-XSRF-TOKEN}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"Input\": \"Bob Bobsky 2\", \"Output\":\"Bob Bobsky\"}"
-						},
-						"url": {
-							"raw": "{{url}}/portal/demoplugin/post",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"portal",
-								"demoplugin",
-								"post"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login to any app",
-					"event": [
+					"name": "Admin Portal",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.environment.set('X-XSRF-TOKEN', pm.cookies.get('XSRF-TOKEN'))\r",
-									"pm.collectionVariables.set('X-XSRF-TOKEN', pm.cookies.get('XSRF-TOKEN'))\r",
-									"//pm.environment.set('imx-session-portal', pm.cookies.get('imx-session-portal'))"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"disabled": true
-							},
-							{
-								"key": "X-XSRF-TOKEN",
-								"value": "{{X-XSRF-TOKEN}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \"Module\": \"RoleBasedPerson\", \"User\": \"BEN.ERDMAN\", \"Password\": \"@OneIM!1\" }"
-						},
-						"url": {
-							"raw": "{{url}}/imx/login/portal?noxsrf=true",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"imx",
-								"login",
-								"portal"
-							],
-							"query": [
+							"name": "Login to any app (Admin)",
+							"event": [
 								{
-									"key": "noxsrf",
-									"value": "true"
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set('X-XSRF-TOKEN', pm.cookies.get('XSRF-TOKEN'))\r",
+											"pm.collectionVariables.set('X-XSRF-TOKEN', pm.cookies.get('XSRF-TOKEN'))\r",
+											"//pm.environment.set('imx-session-portal', pm.cookies.get('imx-session-portal'))"
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login to Portal",
-					"event": [
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": true
+									},
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X-XSRF-TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"Module\":\"DialogUser\",\"User\":\"cccAdmin\",\"Password\":\"@OneIM!1\"} "
+								},
+								"url": {
+									"raw": "{{url}}/imx/login/admin?noxsrf=true",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"imx",
+										"login",
+										"admin"
+									],
+									"query": [
+										{
+											"key": "noxsrf",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.environment.set('X-XSRF-TOKEN', pm.cookies.get('XSRF-TOKEN'))\r",
-									"pm.collectionVariables.set('X-XSRF-TOKEN', pm.cookies.get('XSRF-TOKEN'))\r",
-									"//pm.environment.set('imx-session-portal', pm.cookies.get('imx-session-portal'))"
+							"name": "UploadFileBinary",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X-XSRF-TOKEN}}",
+										"type": "text"
+									},
+									{
+										"key": "imx_sessiongroup",
+										"value": "{{imx_sessiongroup}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx-session-apisamples",
+										"value": "{{imx-session-apisamples}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx-session-portal",
+										"value": "{{imx-session-portal}}",
+										"type": "default",
+										"sessionValue": "",
+										"sessionIndex": 4
+									}
 								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json",
-								"disabled": true
+								"body": {
+									"mode": "file",
+									"file": {
+										"src": "/C:/UNITE/Images/OneIdentityQuest.png"
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/uniteadminplugin/uploadfilebinary/OneIdentityQuest.png",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"uniteadminplugin",
+										"uploadfilebinary",
+										"OneIdentityQuest.png"
+									]
+								}
 							},
-							{
-								"key": "X-XSRF-TOKEN",
-								"value": "{{X-XSRF-TOKEN}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \"User\": \"BEN.ERDMAN\", \"Password\": \"@OneIM!1\" }"
+							"response": []
 						},
-						"url": {
-							"raw": "{{url}}/imx/login/portal/RoleBasedPerson?noxsrf=1",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"imx",
-								"login",
-								"portal",
-								"RoleBasedPerson"
-							],
-							"query": [
-								{
-									"key": "noxsrf",
-									"value": "1"
+						{
+							"name": "UploadFileFormData",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X-XSRF-TOKEN}}",
+										"type": "text"
+									},
+									{
+										"key": "imx_sessiongroup",
+										"value": "{{imx_sessiongroup}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx-session-apisamples",
+										"value": "{{imx-session-apisamples}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx-session-portal",
+										"value": "{{imx-session-portal}}",
+										"type": "default",
+										"sessionValue": "",
+										"sessionIndex": 4
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "filename",
+											"contentType": "",
+											"type": "file",
+											"src": "/C:/UNITE/Images/OneIdentityQuest.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/uniteadminplugin/uploadfileformdata",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"uniteadminplugin",
+										"uploadfileformdata"
+									]
 								}
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "Reading from the Person table",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "imx_sessiongroup",
-								"value": "{{imx_sessiongroup}}",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "X-XSRF-TOKEN",
-								"value": "{{X-XSRF-TOKEN}}",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "imx-session-apisamples",
-								"value": "{{imx-session-apisamples}}",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{url}}/portal/person/all?filter=[{ColumnName: 'LastName', CompareOp: 'Equal', Value1: 'Erdman'}]",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"portal",
-								"person",
-								"all"
-							],
-							"query": [
-								{
-									"key": "filter",
-									"value": "[{ColumnName: 'LastName', CompareOp: 'Equal', Value1: 'Erdman'}]"
+					"name": "Web Portal",
+					"item": [
+						{
+							"name": "ApiSamples: hello world",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X-XSRF-TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"Input\": \"Bob Bobsky 2\", \"Output\":\"Bob Bobsky\"}"
+								},
+								"url": {
+									"raw": "{{url}}/portal/demoplugin",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"portal",
+										"demoplugin"
+									]
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Reading from the Person table with a filter",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-XSRF-TOKEN",
-								"value": "{{X-XSRF-TOKEN}}",
-								"type": "text",
-								"disabled": true
 							},
-							{
-								"key": "imx_sessiongroup",
-								"value": "{{imx_sessiongroup}}",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "imx-session-apisamples",
-								"value": "{{imx-session-apisamples}}",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{url}}/apisamples/person/allcolumns?filter=[{ColumnName: 'LastName', CompareOp: 'Equal', Value1: 'Erdman'}]",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"apisamples",
-								"person",
-								"allcolumns"
-							],
-							"query": [
-								{
-									"key": "filter",
-									"value": "[{ColumnName: 'LastName', CompareOp: 'Equal', Value1: 'Erdman'}]"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Execute Script with return",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-XSRF-TOKEN",
-								"value": "{{X-XSRF-TOKEN}}",
-								"type": "text"
-							},
-							{
-								"key": "imx_sessiongroup",
-								"value": "{{imx_sessiongroup}}",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "imx-session-apisamples",
-								"value": "{{imx-session-apisamples}}",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "imx-session-portal",
-								"value": "{{imx-session-portal}}",
-								"type": "default",
-								"sessionValue": "",
-								"sessionIndex": 4
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
+							"response": []
 						},
-						"url": {
-							"raw": "{{url}}/portal/uniteplugin/getreportsrolesscript/1003",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"portal",
-								"uniteplugin",
-								"getreportsrolesscript",
-								"1003"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Execute Predefined SQL With Params",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "X-XSRF-TOKEN",
-								"value": "{{X-XSRF-TOKEN}}",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "imx_sessiongroup",
-								"value": "{{imx_sessiongroup}}",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "imx-session-apisamples",
-								"value": "{{imx-session-apisamples}}",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "imx-session-portal",
-								"value": "{{imx-session-portal}}",
-								"type": "default",
-								"sessionValue": "",
-								"sessionIndex": 4,
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{url}}/portal/uniteplugin/getreportsrolessql/1003",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"portal",
-								"uniteplugin",
-								"getreportsrolessql",
-								"1003"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Validation",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{url}}/apisamples/testvalidation?p=dd",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"apisamples",
-								"testvalidation"
-							],
-							"query": [
-								{
-									"key": "p",
-									"value": "dd"
+						{
+							"name": "ApiSamples: POST",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X-XSRF-TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"Input\": \"Bob Bobsky 2\", \"Output\":\"Bob Bobsky\"}"
+								},
+								"url": {
+									"raw": "{{url}}/portal/demoplugin/post",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"portal",
+										"demoplugin",
+										"post"
+									]
 								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get PortalPersonMasterdataInteractive",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "imx_sessiongroup",
-								"value": "{{imx_sessiongroup}}",
-								"type": "text",
-								"disabled": true
 							},
-							{
-								"key": "X-XSRF-TOKEN",
-								"value": "{{X-XSRF-TOKEN}}",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "imx-session-apisamples",
-								"value": "{{imx-session-apisamples}}",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{url}}/apisamples/person/allcolumns",
-							"host": [
-								"{{url}}"
+							"response": []
+						},
+						{
+							"name": "Login to any app (Portal)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set('X-XSRF-TOKEN', pm.cookies.get('XSRF-TOKEN'))\r",
+											"pm.collectionVariables.set('X-XSRF-TOKEN', pm.cookies.get('XSRF-TOKEN'))\r",
+											"//pm.environment.set('imx-session-portal', pm.cookies.get('imx-session-portal'))"
+										],
+										"type": "text/javascript"
+									}
+								}
 							],
-							"path": [
-								"apisamples",
-								"person",
-								"allcolumns"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get PortalPersonReportsInteractive",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "imx_sessiongroup",
-								"value": "{{imx_sessiongroup}}",
-								"type": "text",
-								"disabled": true
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": true
+									},
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X-XSRF-TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"Module\":\"RoleBasedPerson\",\"User\":\"Ben.Erdman\",\"Password\":\"@OneIM!1\"} "
+								},
+								"url": {
+									"raw": "{{url}}/imx/login/portal?noxsrf=true",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"imx",
+										"login",
+										"portal"
+									],
+									"query": [
+										{
+											"key": "noxsrf",
+											"value": "true"
+										}
+									]
+								}
 							},
-							{
-								"key": "X-XSRF-TOKEN",
-								"value": "{{X-XSRF-TOKEN}}",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "imx-session-apisamples",
-								"value": "{{imx-session-apisamples}}",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"url": {
-							"raw": "{{url}}/apisamples/person/allcolumns",
-							"host": [
-								"{{url}}"
+							"response": []
+						},
+						{
+							"name": "Login to Portal",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set('X-XSRF-TOKEN', pm.cookies.get('XSRF-TOKEN'))\r",
+											"pm.collectionVariables.set('X-XSRF-TOKEN', pm.cookies.get('XSRF-TOKEN'))\r",
+											"//pm.environment.set('imx-session-portal', pm.cookies.get('imx-session-portal'))"
+										],
+										"type": "text/javascript"
+									}
+								}
 							],
-							"path": [
-								"apisamples",
-								"person",
-								"allcolumns"
-							]
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"disabled": true
+									},
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X-XSRF-TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"User\": \"BEN.ERDMAN\", \"Password\": \"@OneIM!1\" }"
+								},
+								"url": {
+									"raw": "{{url}}/imx/login/portal/RoleBasedPerson?noxsrf=1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"imx",
+										"login",
+										"portal",
+										"RoleBasedPerson"
+									],
+									"query": [
+										{
+											"key": "noxsrf",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reading from the Person table",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "imx_sessiongroup",
+										"value": "{{imx_sessiongroup}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X-XSRF-TOKEN}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx-session-apisamples",
+										"value": "{{imx-session-apisamples}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}/portal/person/all?filter=[{ColumnName: 'LastName', CompareOp: 'Equal', Value1: 'Erdman'}]",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"portal",
+										"person",
+										"all"
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "[{ColumnName: 'LastName', CompareOp: 'Equal', Value1: 'Erdman'}]"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Reading from the Person table with a filter",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X-XSRF-TOKEN}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx_sessiongroup",
+										"value": "{{imx_sessiongroup}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx-session-apisamples",
+										"value": "{{imx-session-apisamples}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}/apisamples/person/allcolumns?filter=[{ColumnName: 'LastName', CompareOp: 'Equal', Value1: 'Erdman'}]",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"apisamples",
+										"person",
+										"allcolumns"
+									],
+									"query": [
+										{
+											"key": "filter",
+											"value": "[{ColumnName: 'LastName', CompareOp: 'Equal', Value1: 'Erdman'}]"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Execute Script with return",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X-XSRF-TOKEN}}",
+										"type": "text"
+									},
+									{
+										"key": "imx_sessiongroup",
+										"value": "{{imx_sessiongroup}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx-session-apisamples",
+										"value": "{{imx-session-apisamples}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx-session-portal",
+										"value": "{{imx-session-portal}}",
+										"type": "default",
+										"sessionValue": "",
+										"sessionIndex": 4
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/portal/uniteplugin/getreportsrolesscript/1003",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"portal",
+										"uniteplugin",
+										"getreportsrolesscript",
+										"1003"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Execute Predefined SQL With Params",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X-XSRF-TOKEN}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx_sessiongroup",
+										"value": "{{imx_sessiongroup}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx-session-apisamples",
+										"value": "{{imx-session-apisamples}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx-session-portal",
+										"value": "{{imx-session-portal}}",
+										"type": "default",
+										"sessionValue": "",
+										"sessionIndex": 4,
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}/portal/uniteplugin/getreportsrolessql/1003",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"portal",
+										"uniteplugin",
+										"getreportsrolessql",
+										"1003"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validation",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/apisamples/testvalidation?p=dd",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"apisamples",
+										"testvalidation"
+									],
+									"query": [
+										{
+											"key": "p",
+											"value": "dd"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get PortalPersonMasterdataInteractive",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "imx_sessiongroup",
+										"value": "{{imx_sessiongroup}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X-XSRF-TOKEN}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx-session-apisamples",
+										"value": "{{imx-session-apisamples}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}/apisamples/person/allcolumns",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"apisamples",
+										"person",
+										"allcolumns"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get PortalPersonReportsInteractive",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "imx_sessiongroup",
+										"value": "{{imx_sessiongroup}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "X-XSRF-TOKEN",
+										"value": "{{X-XSRF-TOKEN}}",
+										"type": "text",
+										"disabled": true
+									},
+									{
+										"key": "imx-session-apisamples",
+										"value": "{{imx-session-apisamples}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{url}}/apisamples/person/allcolumns",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"apisamples",
+										"person",
+										"allcolumns"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
